@@ -6,7 +6,7 @@ const path = require('path')
 const middleware = require('./utils/middleware')
 
 // Import Routes
-
+const UserRoutes = require('./controllers/usercontrollers')
 
 
 // Create the App object + set up view engine
@@ -15,8 +15,9 @@ const app = express()
 
 // view Engine - ejs
 
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
+
+app.set('view engine', 'ejs');
 
 
 // Middleware
@@ -24,13 +25,15 @@ app.set('view engine', 'ejs')
 middleware(app)
 
 // Routes
+// basic home route
 
 app.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
    //res.send('app is connected')
-   res.render('home.ejs', { username, loggedIn, userId})
+   res.render('home.ejs', { username, loggedIn, userId })
 })
 
+app.use('/users', UserRoutes)
 
 // Server Listener
 
