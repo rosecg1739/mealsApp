@@ -2,7 +2,6 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
-const mongoose = require('../utils/connection')
 
 // Create our Router
 const router = express.Router()
@@ -71,6 +70,7 @@ router.post('/login', async (req, res) => {
                 res.redirect('/')
             } else {
                 res.send('something went wrong')
+    
             }
         } else {
             res.send('wrong password')
